@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class BankAccount {
 
-	private static Lock lock = new ReentrantLock();
+	// private static Lock lock = new ReentrantLock();
 
 	private static final int INITIAL_BALANCE = 100;
 	private static Random random = new Random();
@@ -29,13 +29,13 @@ public class BankAccount {
 	}
 
 	public void randomTransfer(BankAccount other) {
-		lock.lock();
-		{
-			int amount = random.nextInt(this.balance);
+		// lock.lock();
+		// synchronized (this) {
+			int amount = random.nextInt(this.balance + 1);
 			this.withdraw(amount);
 			other.deposit(amount);
-		}
-		lock.unlock();
+		// }
+		// lock.unlock();
 	}
 
 	public int getBalance() {
